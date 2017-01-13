@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Title</title>
+		<style type="text/css">
+			* {margin: 0; padding: 0;}
+			body {margin: 0 auto;}
+			.message {overflow: hidden;}
+			.top {width: 100%; height: 30px; float: left;}
+			.top span {display: block; width: 120px; height: 30px; 
+					font: 14px/30px "微软雅黑"; color: #555; text-align: center;
+					float: left; cursor: pointer; cursor: hand;}
+			#bottom {width: 100%; height: auto; float: left;}
+			#bottom div {width: 100%; height: 30px; float: left; overflow: hidden;}
+			#bottom div span {display: block; width: 90px; height: 30px; 
+					font: 14px/30px "微软雅黑"; color: #555; float: left; text-align: center;}
+			#bottom div input {float: left; margin: 3px auto auto 5px; padding: 0px 5px 0px 5px;
+					 border: 1px solid #ccc; outline: none; line-height: 22px; height: 22px;}
+			#bottom div select {float: left; margin: 5px auto auto 5px;}
+			#bottom div span #p_display {margin-top: 5px;}
+			.operator {width: 100%; height: 40px; overflow: hidden; float: left;}
+			.operator #submit {display: block; width: 130px; height: 40px; font: 14px/40px "微软雅黑";
+						color: #fff; background-color: #b4210e; border-radius: 3px; float: left; margin: 5px auto auto 50px;
+						text-align: center; cursor: pointer; cursor: hand;} 
+			.table {width: 700px; margin-top: 10px;}
+			#query {width: 700px; margin: 0px auto 10px 10px; border-spacing: 10px; border: 1px solid #ddd;}
+			#query tr td {font: 14px/20px "微软雅黑"; color: #555; text-align: center; /*width: 100px;*/}
+			#query tr td:nth-child(n+12){cursor: pointer; cursor: hand;}	
+			/*#query*/	
+		</style>
+		<script type="text/javascript" src="js/Ajax.js" ></script>
+		<script type="text/javascript">
+			function query(){
+				console.log(typeof window.location.href.split("?")[1].split("=")[1]);
+				
+				var _obj = {
+					
+					"identify":window.location.href.split("?")[1].split("=")[1]
+				}
+				console.log(_obj);
+				ajaxRequest("post","query.php",true,_obj,function(data){
+					
+					console.log(data);
+					
+					var _data = JSON.parse(data);
+					console.log(_data);
+					document.getElementById("p_name").value=_data["p_name"];
+					document.getElementById("p_subhead").value=_data["p_subhead"];
+					document.getElementById("p_price").value=_data["p_price"];
+					document.getElementById("p_discount").value=_data["p_discount"];
+					document.getElementById("p_no").value=_data["p_no"];
+					document.getElementById("p_saled").value=_data["p_saled"];
+					document.getElementById("p_display").value=_data["p_display"];
+					document.getElementById("p_sort").value=_data["p_sort"];
+					document.getElementById("p_date").value=_data["p_date"];
+					
+				});
+			}
+			function update(){
+				ajaxRequest("post","products11.php",true,{"p_name":"太宰风衣","cmd":3,"identity":4},function(data){
+					if(parseInt(data)){
+						query();
+					}
+				});
+			}
+//			function removeData(_identify){
+//				ajaxRequest("post","products11.php",true,{"identify":_identify,"cmd":4},function(data){
+//					if(parseInt(data)>0){
+//						query();
+//					}
+//				});
+//			}
+			function main(){
+				var p_display = document.getElementById("p_display");
+				var _obj={
+					"p_name":document.getElementById("p_name").value,
+					"p_subhead":document.getElementById("p_subhead").value,
+					"p_price":document.getElementById("p_price").value,
+					"p_discount":document.getElementById("p_discount").value,
+					"p_no":document.getElementById("p_no").value,
+					"p_brand":0,
+					"p_category":0,
+					"p_saled":document.getElementById("p_saled").value,
+					"p_display":p_display.getAttribute("checked")?1:0,//注意：p_display.checked?1:0 不行
+					"p_sort":document.getElementById("p_sort").value,
+					"p_date":document.getElementById("p_date").value,
+					"cmd":2
+					
+				};
+				ajaxRequest("post","query.php",true,_obj,function(data){
+					//console.log(data);
+					if(parseInt(data)){
+						query();
+					}
+				});
+			}
+			
+			window.onload=function(){
+				//alert("1");
+//				main();
+				document.getElementById("submit").onclick=main;
+				query();
+//				update();
+			};
+		</script>
+	</head>
+	<body>
+		<div class="message">
+			<div class="top">
+				<!--<span>增加产品信息</span>
+				<span>删除产品信息</span>
+				<span>修改产品信息</span>
+				<span>查询产品信息</span>-->
+				<a href="query.html">返回查询商品信息</a>
+			</div>
+			<div id="bottom" class="bottom">
+				<!--<iframe src="" frameborder="0"></iframe>右边用iframe最好    
+					品牌ID不需要写
+				-->
+				<div><span>产品名称:</span><input type="text" id="p_name"/></div>
+				<div><span>产品副标题:</span><input type="text" id="p_subhead"/></div>
+				<div><span>产品价格:</span><input type="text" id="p_price"/></div>
+				<div><span>产品折扣:</span><input type="text" id="p_discount"/></div>
+				<div><span>产品货号:</span><input type="text" id="p_no"/></div>
+				<div><span>产品品牌:</span><select id="brand"></select></div>
+				<div><span>产品目录:</span><select id="category"></select></div>
+				<div><span>产品销量:</span><input type="text" id="p_saled"/></div>
+				<div><span>是否在线:</span><input type="checkbox" id="p_display"/></div>
+				<div><span>产品排序:</span><input type="text" id="p_sort"/></div>
+				<div><span>上架时间:</span><input type="text" id="p_date"/></div>
+			</div>
+			<div class="operator">
+				<span id="submit">确认添加信息</span>
+			</div>
+		</div>
+		<div class="table">
+			<table id="query" ></table>
+		</div>
+	</body>
+</html>

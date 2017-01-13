@@ -1,0 +1,6 @@
+window.onload=function () {
+	// body...
+}()
+	// body...
+}()
+console.log();

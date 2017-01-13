@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>继承</title>
+	<meta charset="UTF-8">
+	<meta name="Author" content="rmk">
+	<link rel="stylesheet" type="text/css"/>
+	<script type="text/javascript" >
+		function Animal(){  
+			this.name = "Animal";  
+			this.showName = function(){  
+				//alert(this.name);  
+			}  
+			this.run = function(){  
+				console.log("animal");
+				//alert(this.name);  
+			}  
+		}  
+
+		function Cat(){  
+			this.name = "Cat";  
+			this.run = function(){  
+				console.log("Cat");
+				//alert(this.name);  
+			}
+		}  
+
+		var animal = new Animal();  
+		var cat = new Cat();  
+
+		//通过call或apply方法，将原本属于Animal对象的showName()方法交给对象cat来使用了。  
+		//输入结果为"Cat"  
+		// animal.showName.call(cat);
+		Animal.call(cat);
+		//console.log(cat.name);
+		console.log(new Cat);
+		cat.run();
+	</script>
+</head>
+<body>
+	这是html内容
+</body>
+</html>

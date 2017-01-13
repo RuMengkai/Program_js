@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>表格排序</title>
+	<meta charset="UTF-8">
+	<meta name="Author" content="rmk">
+	<style type="text/css">
+		#table input{border:none;width: 30px;}
+		input:focus{outline:none;}
+	</style>
+	<script type="text/javascript" src="js/w5_sort2.js"></script>
+</head>
+<body>
+	<div id="box">
+		<table border="1" id="table">
+			<tr>
+				<td>姓名</td>
+				<td>成绩</td>
+			</tr>
+			<tr>
+				<td>张三</td>
+				<td><input type="text" value="98"></td>
+			</tr>
+			<tr>
+				<td>李四</td>
+				<td><input type="text" value="67"></td>
+			</tr>
+			<tr>
+				<td>王五</td>
+				<td><input type="text" value="87"></td>
+			</tr>
+			<tr>
+				<td>赵六</td>
+				<td><input type="text" value="89"></td>
+			</tr>
+			<tr>
+				<td>钱七</td>
+				<td><input type="text" value="65"></td>
+			</tr>
+		</table>
+	</div>
+	<br>
+	<input type="button" value="增加" id="addbtn">
+	<input type="button" value="排序" id="btn">
+	<br/><br/>
+	<div id="box">
+		<table border="1" id="table_sort">
+			
+		</table>
+	</div>
+</body>
+</html>

@@ -1,0 +1,7 @@
+body{background: #eee;}
+#box{background: #fff; position: relative;margin: 0 auto;overflow: hidden;height: auto;height:2000px;}
+#box>div{position: absolute; width:150px;overflow: hidden;}
+#box>div>img{width: 150px;overflow: hidden;float: left;}
+#aa{
+	.aa{width: 10px}
+}

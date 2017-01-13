@@ -1,0 +1,22 @@
+{
+  "1":{
+    "name":"阿猫",
+    "img":"images/img1.jpg",
+    "price":2000
+  },
+  "2":{
+    "name":"阿狗",
+    "img":"images/img2.jpg",
+    "price":2800
+  },
+  "3":{
+    "name":"牧马人",
+    "img":"images/img3.jpg",
+    "price":28000
+  },
+  "4":{
+    "name":"金蝉脱壳",
+    "img":"images/img4.jpg",
+    "price":48000
+  }
+}

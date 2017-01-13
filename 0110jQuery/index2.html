@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>j</title>
+	<meta charset="UTF-8">
+	<meta name="Author" content="rmk">
+	<style type="text/css">
+		span{width: 100px;background-color: #000;height: 100px;display: block;color: #fff;float: left;}
+	</style>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			// $("span").on("click",function(){
+			// 	alert($(this).text());
+			// })//只添加绑定事件
+			// $("body").on("click","span",{"key":"rmk"},function(e){
+			// 	console.log(e.data.key);
+			// 	alert($(this).text());
+			// })//事件委托
+			// $("body").append("<span>8</span>")
+
+
+			// $("p").click( function (event, a, b) {
+			// 	alert(a+b);
+			// } ).trigger("click", ["foo", "bar"]);
+
+
+			// $("p").bind("myEvent", function (event, message1, message2) {
+			//   alert(message1 + ' ' + message2);
+			// });
+			//$("p").trigger("myEvent", ["Hello","World!"]);
+			(function loop(){
+				$(".p").show(200,"linear",function(){
+				   $(".p").hide(function(){
+						loop();
+					});
+				 });//回调函数都是在动画结束后执行
+			})();
+			// (function loop(){
+			// 	$("span").hide(1000,function(){
+			// 	   $("span").show(1000,function(){
+			// 			loop();
+			// 		});
+			// 	 });//回调函数都是在动画结束后执行
+			// })();
+			// $("#p").show(function(){
+			//    $("#p").hide(function(){
+			// 		$("#p").show()
+			// 	});
+			//  });//回调函数都是在动画结束后执行
+		})
+	</script>
+</head>
+<body>
+	<p class="p" style="display: none">ssssssssssss</p>
+	<span>1</span>
+	<span>2</span>
+	<span>3</span>
+	<span>4</span>
+	<span>5</span>
+	<span>6</span>
+</body>
+</html>

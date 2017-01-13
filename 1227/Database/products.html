@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>产品管理</title>
+	<style type="text/css">
+		body{margin: 0 auto}
+		.top{width: 100%; height: 30px; float:left;}
+		.top span{display: block;width: 120px;height: 30px;line-height: 30px;font-size: 14px;float:left;cursor: pointer;color: #555;text-align: center;}
+		.content{width: 100%;height: auto;float: left;}
+		.content div{width: 100%;height: 30px;float: left;overflow: hidden;}
+		.content div span{width: 120px;height: 30px;float: left;text-align: right;color: #555;font-size: 14px;}
+		.content div input{outline: none;padding: 0 5px;}
+		.ctrl{width: 100%;height:40px;overflow: hidden;	float: left;}
+		.ctrl #submit{ diplay:block;
+			width:130px; height:30px;
+			line-height:30px; font-size:14px;
+			font-family:"微软雅黑"; color:#fff;
+			background-color: #b4210e;
+			border-radius:3px;
+			float:left; margin:5px auto auto 50px; text-align:center;
+			cursor:pointer;
+		}
+	</style>
+	<script type="text/javascript" src="../js/common.js"></script>
+	<script type="text/javascript">
+		function query(){
+            ajaxRequest("post","products.php",true,{"cmd":1},function(data){
+                document.getElementById("query").innerHTML=data;
+				console.log(data);
+            });
+        }
+		function main(){
+			var p_display=document.getElementById("p_display");
+			var _obj={
+				"p_name":document.getElementById('p_name').value,
+				"p_subhead":document.getElementById('p_subhead').value,
+				"p_price":document.getElementById('p_price').value,
+				"p_discount":document.getElementById('p_discount').value,
+				"p_no":document.getElementById('p_no').value,
+				"p_brand":0,
+				"p_category":0,
+				"p_saled":document.getElementById("p_saled").value,
+				"p_display":p_display.getAttribute("checked")?1:0,
+				"p_sort":document.getElementById('p_sort').value,
+				"p_date":document.getElementById('p_date').value,
+				"cmd":2
+			};
+			ajaxRequest("post","products.php",true,_obj,function(data){
+				console.log(data);
+				var _data=JSON.parse(data);
+				console.log(_data);
+				if(parseInt(_data["flag"])>0) {
+                    query();
+                }
+			});
+		}
+		window.onload=function(){
+			document.getElementById('submit').onclick=main;
+		};
+	</script>
+</head>
+<body>
+	<div class="top">
+		<span>增加产品信息</span>
+		<span>删除产品信息</span>
+		<span>修改产品信息</span>
+		<span>查询产品信息</span>
+	</div>
+	<div class="content">
+		<div><span>产品名称：</span><input value="11" type="text" id="p_name"></div>
+		<div><span>产品副标题：</span><input value="11" type="text" id="p_subhead"></div>
+		<div><span>产品价格：</span><input value="11" type="text" id="p_price"></div>
+		<div><span>产品折扣：</span><input value="11" type="text" id="p_discount"></div>
+		<div><span>产品货号：</span><input value="11" type="text" id="p_no"></div>
+		<div><span>产品品牌：</span><select id="p_brand"></select></div>
+		<div><span>产品目录：</span><select id="p_category"></select></div>
+		<div><span>产品销量：</span><input value="11" type="text" id="p_saled"></div>
+		<div><span>是否在线：</span><input value="11" type="checkbox" id="p_display"></div>
+		<div><span>产品排序：</span><input value="11" type="text" id="p_sort"></div>
+		<div><span>产品上架时间：</span><input value="11" type="text" id="p_date"></div>
+	</div>
+	<div class="ctrl">
+		<span id="submit">确认添加信息</span>
+	</div>
+	<div class="table">
+	    <table id="query"></table>
+	</div>
+</body>
+</html>

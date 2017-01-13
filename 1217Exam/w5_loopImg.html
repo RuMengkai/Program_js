@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>轮播图</title>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<style type="text/css">
+			.bannerwrap{margin: 10px auto; width: 990px;overflow: hidden; position: relative;height: 500px;}
+			#banner{width: 3000px;height: 500px; position: absolute;}
+			#banner div:nth-child(1){width:1000px; height:500px;background:#f00;position:absolute}
+			#banner div:nth-child(2){width:1000px; height:500px;background:#0f0;position:absolute;left: -1000px;}
+			#banner div:nth-child(3){width:1000px; height:500px;background:#00f;position:absolute;left: -2000px;}
+			#banner div:nth-child(4){width:1000px; height:500px;background:#f00;position:absolute;left: -3000px;}
+			#banner div>img{width: 1000px;height: 500px;}
+		</style>
+		<script src="js/w5_loopImg.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div class="bannerwrap">
+			<div id="banner">
+				<div><img src="images/c01.jpg"/></div>
+				<div><img src="images/c04.jpg"/></div>
+				<div><img src="images/c03.jpg"/></div>
+				<div><img src="images/c01.jpg"/></div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>手风琴</title>
+	<meta charset="UTF-8">
+	<meta name="Author" content="rmk">
+	<style type="text/css">
+		.wrap{width: 1200px;height: 405px;overflow: hidden;margin: 0 auto}
+		.box{width: 1400px;height: 405px;overflow: hidden;margin: 0 auto}
+		.box span{width: 200px;overflow: hidden;float: left;height: 405px}
+		.sl span img{height: 100px;width: 400px;margin-top: 10px;overflow: hidden;display: block;}
+	</style>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$(".box span").mouseenter(function() {
+				$(".box span").stop();
+				$(".box span").not(this).animate({width:90},1000);
+				$(this).animate({width:800},1000);
+			}
+			);
+			$(".box span").mouseout(function() {
+				$(".box span").stop();
+				$(".box span").not(this).animate({width:200},1000);
+				$(this).animate({width:200},1000);
+			});
+			var img=$(".sl span img");
+			img.mouseenter(function() {
+				img.stop();
+				img.not(this).animate({width:400},1000);
+				$(this).animate({width:800},1000);
+			}
+			);
+			img.mouseout(function() {
+				img.stop();
+				img.not(this).animate({width:400},1000);
+				$(this).animate({width:400},1000);
+			});
+			
+		})
+	</script>
+</head>
+<body>
+<div class="wrap">
+	<div class="box">
+		<span><img src="images/img1.jpg" alt=""></span>
+		<span><img src="images/img2.jpg" alt=""></span>
+		<span><img src="images/img3.jpg" alt=""></span>
+		<span><img src="images/img4.jpg" alt=""></span>
+		<span><img src="images/img5.jpg" alt=""></span>
+		<span><img src="images/img6.jpg" alt=""></span>
+	</div>
+</div>
+<div class="sl">
+	<span><img src="images/img1.jpg" alt=""></span>
+	<span><img src="images/img2.jpg" alt=""></span>
+	<span><img src="images/img3.jpg" alt=""></span>
+	<span><img src="images/img4.jpg" alt=""></span>
+	<span><img src="images/img5.jpg" alt=""></span>
+	<span><img src="images/img6.jpg" alt=""></span>
+</div>
+</body>
+</html>

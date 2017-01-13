@@ -1,0 +1,31 @@
+@h1:100px;
+@w1:200px;
+.border(@radius){
+	border:2px solid #f00;
+	border:@arguments;
+	border-radius: @radius;
+}
+.border2(@radius,@w){
+	
+	.border(@radius);
+	border:@w solid #f00;
+}
+.border{
+	.border2(100px;5px)
+
+}
+.content{
+	.border(100px);
+}
+#sanjiao{
+	border: 30px solid;
+	width: 0;height: 0;
+	overflow: hidden;
+	display: block;
+	border-color: #00f transparent transparent transparent;
+	background: no-repeat; 
+}
+div{background-color: #0f0;width: @w1;height: @h1;.border(10px)}
+ul{width: 30px}
+li{width: 10px}
+

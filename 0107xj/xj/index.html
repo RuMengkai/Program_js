@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title></title>
+	<meta charset="UTF-8">
+	<meta name="Author" content="rmk">
+	<link rel="stylesheet" type="text/css" href="css/javascript.fullPage.css" />
+	<style type="text/css">
+		h1{padding: 0; margin: 0; position: relative; top: 50%; transform: translateY(-50%); }
+		#fullpage{color: #fff;font-size: 40px;}
+		.section0{background-color: #BFDA00; text-align: center;}
+		.section1{background-color: #2EBE21; text-align: center;}
+		.section2{background-color: #2C3E50; text-align: center;}
+	</style>
+	<script type="text/javascript" src="js/javascript.fullPage.min.js"></script>
+</head>
+<body>
+<div id="fullpage">
+	<div class="section section0">
+		<h1>section1</h1>
+	</div>
+	<div class="section section1" >
+		<div class="slide" id="slide1">
+			<h1>section2 slide1</h1>
+		</div>
+		<div class="slide" id="slide1">
+			<h1>section2 slide2</h1>
+		</div>
+		<div class="slide" id="slide1">
+			<h1>section2 slide3</h1>
+		</div>
+	</div>
+	<div class="section section2" >
+		<h1>section3</h1>
+	</div>
+</div>
+<script type="text/javascript">
+	fullpage.initialize('#fullpage', {
+		anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
+		menu: '#menu',
+		css3:true
+	});
+</script>
+</body>
+</html>

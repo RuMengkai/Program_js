@@ -1,0 +1,8 @@
+ul{position: relative;height: 206px; width: 300px;margin: 10px auto;border:1px solid #999;display: block;}
+ul>li{width: 100%;margin-top: 15px;}
+ul .li1{background-color: #0ff;}
+ul .li2{background-color: #0f0}
+ul .li3{background-color: #ff0}
+ul .li4{background-color: #ff0}
+ul .li5{background-color: #0f0}
+ul>li>button{margin-left: 20px}

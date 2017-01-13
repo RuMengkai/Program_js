@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>jQuery</title>
+	<meta charset="UTF-8">
+	<meta name="Author" content="rmk">
+	<style type="text/css">
+		body{backgroundColor:#F00 }
+	</style>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript">
+	var date1=new Date();
+	console.log(date1.getTime());
+	//window.onload与$的区别
+	// window.onload=function(){
+	// 	var date3=new Date();
+	// 	console.log(date3.getTime());
+	// 	console.log("onload"+(date3.getTime()-date1.getTime()));
+	// }
+	window.onload=function(e){console.log(e)}
+	$(document).ready(function(){
+		var date2=new Date();
+		console.log(date2.getTime());
+		console.log("$"+(date2.getTime()-date1.getTime()));
+		// $("#dome").html("hello world");
+		// $("#dome").attr("title","rmk");
+		// $("#dome").prop("title","rmkkkkk");
+		// console.log($(":input:first"));
+		// $('ul li:last').addClass(function() {
+		// 	return 'item-' + $(this).index();
+		// });
+		$("p").append( $("input").map(function(){
+		  return $(this).val();
+		}).get().join(", ") ); 
+		console.log($("input").map(function(){return $(this).val(); }));
+
+
+
+		// a sample logging function to be added to a callbacks list
+		var foo = function( value ){
+		    console.log( 'foo:' + value );
+		}
+
+		// another function to also be added to the list
+		var bar = function( value ){
+		    console.log( 'bar:' + value );
+		}
+		var bar11 = function( value ){
+		    console.log( 'bar11:' + value );
+		}
+
+		var callbacks = $.Callbacks();
+
+		// add the function 'foo' to the list
+		callbacks.add( foo );
+		callbacks.add( bar11 );
+
+		// fire the items on the list
+		callbacks.fire( 'hello' );  
+		// outputs: 'foo: hello'
+
+		// add the function 'bar' to the list
+		callbacks.add( bar );
+
+		// fire the items on the list again
+		callbacks.fire( 'world' );  
+
+		// outputs:
+		// 'foo: world'
+		// 'bar: world'
+	})
+	</script>
+</head>
+<body>
+<!-- 	<div id="dome"></div>
+	<form>
+		<input type="button" value="Input Button"/>
+		<input type="checkbox" />
+
+		<input type="file" />
+		<input type="hidden" />
+		<input type="image" />
+
+		<input type="password" />
+		<input type="radio" />
+		<input type="reset" />
+
+		<input type="submit" />
+		<input type="text" />
+		<select><option>Option</option></select>
+
+		<textarea></textarea>
+		<button>Button</button>
+
+	</form>
+	<ul>
+      <li>Hello</li>
+      <li>Hello</li>
+      <li>Hello</li>
+  </ul> -->
+  <p><b>Values: </b></p>
+  <form>
+  	<input type="text" name="name" value="John"/>
+  	<input type="text" name="password" value="password"/>
+  	<input type="text" name="url" value="http://ejohn.org/"/>
+  </form>
+</body>
+</html>

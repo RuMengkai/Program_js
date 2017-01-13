@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        div{ width:600px; height:auto;}
+        div img{ width:100%; height:auto; float:left; border:none;}
+        #pushData{ display:block; width:90px; background-color:#f1f1f1;
+            border:solid 1px #ccc; font-size:13px; color:#555;
+            height:25px; line-height:27px; overflow:hidden;
+            margin:10px; text-align:center; cursor:pointer;
+        }
+    </style>
+    <script type="text/javascript" src="js/Ajax.js"></script>
+    <script type="text/javascript">
+
+        function bingEvent(_identify){
+            document.getElementById("pushData").onclick=function(){
+                document.cookie="id="+_identify;
+            }
+        }
+        function main(){
+            var _url=window.location.href;
+            var _identify=_url.match(/n=\d+/g)[0].replace(/n=/g,"");
+//            var _img=document.getElementsByTagName("img")[0];
+//            _img.src="img"+_identify+".jpg";
+//
+//
+//            var _pd=document.getElementById("pushData");
+//            _pd.onclick=function(){
+//                //把选购的商品信息放入到cookie中
+//                document.cookie="id="+_identify;
+//            }
+//        <div>
+//            <img al="" src=""/>
+//            <span id="pushData">加入购物车</span>
+//        </div>
+            ajax("post","json/product.json",true,null,function(data){
+                var _data=JSON.parse(data);
+                var _div=null,_img=null,_span=null;
+                var _body=document.getElementsByTagName("body")[0];
+                for(var k in _data){
+                    if(k==_identify){
+                        _div=document.createElement("div");
+                        _img=document.createElement("img");
+                        _img.src=_data[k]["img"];
+                        _div.appendChild(_img);
+                        _span=document.createElement("span");
+                        _span.innerHTML=_data[k]["name"]+"&nbsp;&nbsp;"+_data[k]["price"];
+                        _div.appendChild(_span);
+                        _span=document.createElement("span");
+                        _span.setAttribute("id","pushData");
+                        //_span.id="pushData";
+                        _span.innerHTML="加入购物车";
+                        _div.appendChild(_span);
+                        _body.appendChild(_div);
+                        break;
+                    }
+                }
+                bingEvent(_identify);
+            });
+        }
+        window.onload=main;
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>SUIpage</title>
+	<meta charset="UTF-8">
+	<meta name="Author" content="rmk">
+	<link href="http://g.alicdn.com/sj/dpl/1.5.1/css/sui.min.css" rel="stylesheet">
+	<script type="text/javascript" src="http://g.alicdn.com/sj/lib/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="http://g.alicdn.com/sj/dpl/1.5.1/js/sui.min.js"></script>
+</head>
+<body>
+	<h2>小型分页器</h2>
+	<div class="test sui-pagination pagination-small">
+		<ul>
+			<li class="prev disabled"><a href="#">«</a></li>
+			<li class="active"><a href="#">1</a></li>
+			<li><a href="#">2</a></li>
+			<li><a href="#">3</a></li>
+			<li><a href="#">4</a></li>
+			<li><a href="#">5</a></li>
+			<li class="next"><a href="#">»</a></li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		$('.test').pagination({
+			pages: 50,
+			styleClass: ['pagination-large'],
+			showCtrl: true,
+			displayPage: 6,
+			onSelect: function (num) {
+        console.log(num)  //打开控制台观察
+    }
+})
+</script>
+</body>
+</html>

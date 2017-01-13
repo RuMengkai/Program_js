@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>留言板</title>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<script src="js/Ajax.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/index.js" type="text/javascript" charset="UTF-8"></script>
+	</head>
+	<body>
+		<div id="t_sina">
+		    <h2>大家正在说</h2>
+		    <div id="content">
+		        <ul>
+		        </ul>
+		    </div>
+		    <dl>
+		    	<dt>-发布留言-</dt>
+		        <dd>姓名：<input id='btn_name' class="text" type="text" /></dd>
+		        <dd>内容：<textarea id='btn_msg'></textarea></dd>
+		        <dd><input class="btn" id="btn_submit" type="button" value="提交" /></dd>
+		    </dl>
+		</div>
+		<ul id="tmp_container" style="height:0px; overflow:hidden;"></ul>
+	</body>
+</html>

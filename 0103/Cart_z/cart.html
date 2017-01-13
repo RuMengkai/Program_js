@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        img{width: 200px}
+    </style>
+    <script type="text/javascript" src="js/Ajax.js"></script>
+    <script type="text/javascript">
+        /**
+         * 自动计算所有商品的价格总和
+         * 记录用户选择商品的数量
+         * 可以删除商品
+         * 可以连接到商品详情页
+         * 可以有加入购物车
+         * 可以清空购物车
+         * 购物车内可以加减商品数量
+         *
+         * 做购物车功能之前要先了解页面于页面之间的关系
+         *  不同的页面之间怎么获取相同数据的？
+         *  cookie！！！！！！
+         *
+         * 要做的事情：
+         * 创建一个带有产品的页面，可以跳转到详情页面
+         * 详情页面当中需要有加入购物车的功能
+         *
+         * 学会利用地址栏传参
+         * 暂时定（n=\d+）表示产品序号
+         *
+         * 本页面显示购物车信息
+         */
+//      <div id="container">
+//         <img src="" alt="">
+
+//       </div>
+        function main(){
+            var _cookie=document.cookie;
+            var _identify=_cookie.match(/\d+/g)[0];
+             ajax("post","json/product.json",true,null,function(data){
+                var _data=JSON.parse(data);
+                var _div=null,_img=null,_span=null;
+                var _body=document.getElementsByTagName("body")[0];
+                for(var k in _data){
+                    if(k==_identify){
+                        _div=document.createElement("div");
+                        _img=document.createElement("img");
+                        _img.src=_data[k]["img"];
+                        _div.appendChild(_img);
+
+                        _span=document.createElement("span");
+                        _span.innerHTML=_data[k]["name"]+"&nbsp;&nbsp;"+_data[k]["price"];
+                        _div.appendChild(_span);
+                        _span=document.createElement("span");
+                        _span.setAttribute("id","pushData");
+                        //_span.id="pushData";
+                    
+                        _div.appendChild(_span);
+                        _body.appendChild(_div);
+
+                        _body.appendChild(_div);
+                        break;
+                    }
+                }
+            });
+            //document.getElementsByTagName("img")[0].src="img"+_cookie.match(/\d+/g)[0]+".jpg";
+        }
+        window.onload=main;
+    </script>
+</head>
+<body>
+<a href="products.html">商品列表</a>
+</body>
+</html>

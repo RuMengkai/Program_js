@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        body{ margin:0 auto; text-align:center;}
+        .history{ width:400px; overflow:hidden; margin:0 auto; height:500px; border:solid 1px #ccc; padding:10px;}
+        .history .title{ width:100%; display:block; height:30px; color:#555; text-align:center; line-height:30px; font-size:15px;
+            font-family: "微软雅黑"; border-bottom:solid 1px #f1f1f1;
+        }
+        .history .h{ width:100%; display:block; height:30px; color:#555; text-align:left; line-height:30px; font-size:14px;
+            font-family:"微软雅黑";
+        }
+        .user,.message,.send{ width:400px; padding:10px; height:30px; margin:0 auto; margin-top:5px; border:solid 1px #ccc;}
+        .user span,.message span{ display:block; width:60px; height:30px; line-height:30px; text-align:right; font-size:14px; float:left; color:#555;}
+        .user input,.message input{ float:left; border:1px solid #ccc; padding:0px 5px 0px 5px; margin:0px; height:22px; width:200px;
+            line-height:22px; font-size:14px; color:#555; margin-top:3px;
+        }
+        .send{ text-align:center;}
+        .send span{ cursor:pointer; width:60px; height:24px; border-radius:3px; background-color:darkmagenta; display:block; overflow:hidden;
+            margin:0 auto; color:#fff; font-family:"微软雅黑";
+        }
+    </style>
+    <script type="text/javascript" src="http://10.9.156.108/html5/Ajax/api/getMessage.php"></script>
+    <script type="text/javascript" src="http://10.9.156.108/htmL5/Ajax/api/sendMessage.php?user=熊猫部落&message=yes"></script>
+    <script type="text/javascript">
+        window.onload=function(){
+			var _span=null;
+            var _df=document.createDocumentFragment();
+            var _history=document.getElementById("history");
+			for(var i=1;i<_history.children.length;i++){
+				_history.removeChild(_history.children[i]);
+			}
+			for(var key in _message) {
+				_span = document.createElement("span");
+				_span.className = "h";
+				_span.innerHTML = key + ":" + _message[key];
+				_df.appendChild(_span);
+			}
+			_history.appendChild(_df);
+            console.log(_message);
+        }
+
+    </script>
+</head>
+<body>
+    <div class="history" id="history"><span class="title">历史消息：</span></div>
+    <div class="user"><span>用户名：</span><input type="text" id="user"/> </div>
+    <div class="message"><span>新消息：</span><input type="text" id="message"/> </div>
+    <div class="send"><span id="send">发送</span></div>
+</body>
+</html>
+
+<!--  /*
+getMessage.php 这个接口不需要传递任何参数
+作用：从服务器上获取所有聊天信息；
+使用方式：
+url：http://10.9.156.108/html5/Ajax/api/getMessage.php
+请求方式：跨域请求
+返回值为：var _message={
+    //格式如下：
+    "user0":"value0",
+    "user1":"value1"
+    .....
+}
+要求：将所有数据显示页面上。格式：....
+
+sendMessage.php 这个接口必须两个参数
+参数名：
+user:保存用户名
+message:存放聊天信息；
+返回值为数字0：表示发送失败，1：表示发送成功
+*/ -->

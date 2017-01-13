@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Title</title>
+		<style type="text/css">
+			* {margin: 0; padding: 0;}
+			body {margin: 0 auto;}
+			.message {overflow: hidden;}
+			.top {width: 100%; height: 30px; float: left;}
+			.top a span {display: block; width: 120px; height: 30px; 
+					font: 14px/30px "微软雅黑"; color: #555; text-align: center;
+					float: left; cursor: pointer; cursor: hand;}
+			.table {width: 700px; margin-top: 10px;}
+			#query {width: 700px; margin: 0px auto 10px 10px; border-spacing: 10px; border: 1px solid #ddd;}
+			#query tr td {font: 14px/20px "微软雅黑"; color: #555; text-align: center; /*width: 100px;*/}
+			#query tr td:nth-child(n+12){cursor: pointer; cursor: hand;}	
+			/*#query*/	
+		</style>
+		<script type="text/javascript" src="js/Ajax.js" ></script>
+		<script type="text/javascript">
+			function query(){
+				ajaxRequest("post","products11.php",true,{"cmd":1},function(data){
+					document.getElementById("query").innerHTML=data;
+					var _tr=document.getElementById("query").children[0].children;
+					var _td=null;
+					for(var i=0;i<_tr.length;i++){
+						_tr[i].children[11].children[0].onclick=function(){
+						}
+						_tr[i].children[12].children[0].onclick=function(){
+//							var _obj={
+//					          	"indentity":this.className
+//							};c
+//							ajaxRequest("post","products11.php",true,_obj,function(data){
+//								//console.log(data);
+//								if(parseInt(data)){
+//									query();
+//								}
+//							});
+							window.location.href="update.html?indentity="+this.className+"";
+						}
+						_tr[i].children[13].children[0].onclick=function(){
+							if(window.confirm("是否确认删除？")) {
+								removeData(this.className);
+							}
+						}
+					}
+				});
+			}
+
+			function removeData(_identify){
+				ajaxRequest("post","products11.php",true,{"identify":_identify,"cmd":4},function(data){
+					if(parseInt(data)>0){
+						alert("提示:删除已完成！！");
+						query();
+					}
+				});
+			}
+			window.onload=function(){
+				query();
+			};
+		</script>
+	</head>
+	<body>
+		<div class="message">
+			<div class="top">
+				<a href="insert.html"><span>增加产品信息</span></a>
+				<!--<span>删除产品信息</span>
+				<span>修改产品信息</span>
+				<span>查询产品信息</span>-->
+			</div>
+			<!--<div id="bottom" class="bottom">-->
+				<!--<iframe src="" frameborder="0"></iframe>右边用iframe最好    
+					品牌ID不需要写
+				-->
+				<!--<div><span>产品名称:</span><input type="text" id="p_name"/></div>
+				<div><span>产品副标题:</span><input type="text" id="p_subhead"/></div>
+				<div><span>产品价格:</span><input type="text" id="p_price"/></div>
+				<div><span>产品折扣:</span><input type="text" id="p_discount"/></div>
+				<div><span>产品货号:</span><input type="text" id="p_no"/></div>
+				<div><span>产品品牌:</span><select id="brand"></select></div>
+				<div><span>产品目录:</span><select id="category"></select></div>
+				<div><span>产品销量:</span><input type="text" id="p_saled"/></div>
+				<div><span>是否在线:</span><input type="checkbox" id="p_display"/></div>
+				<div><span>产品排序:</span><input type="text" id="p_sort"/></div>
+				<div><span>上架时间:</span><input type="text" id="p_date"/></div>
+			</div>
+			<div class="operator">
+				<span id="submit">确认添加信息</span>
+			</div>
+		</div>-->
+		<div class="table">
+			<table id="query" ></table>
+		</div>
+	</body>
+</html>

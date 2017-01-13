@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>锚点滑动效果</title>
+	<meta charset="UTF-8">
+	<meta name="Author" content="rmk">
+	<style type="text/css">
+		.content{height: 300px;width: 100%;font-size: 30px;}
+		#nav{position: fixed;text-align: center;margin-left: -250px;left: 50%;width: 500px}
+		#nav a{cursor: pointer;margin-left:10px }
+		#nav a{float: left;}
+	</style>	
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			for (var i = 0; i < $("#nav a").length; i++) {
+				(function(i) {
+					$("#nav"+i).click(function () {
+						$("html,body").animate({scrollTop:$("#n"+i).offset().top},700);
+					});
+				})(i);
+			}
+			$(window).scroll ( function(){
+			    var scrollTop = document.body.scrollTop;
+			    for (var i = 0; i < $("#nav a").length; i++) {
+					(function(i) {
+						if (scrollTop>$("#n"+i).offset().top-10) {
+							for (var j = 0; j < $("#nav a").length; j++) {
+								$("#nav"+j).css("color","#000");
+							}
+							$("#nav"+i).css("color","#f00");
+						} 
+					})(i);
+				}
+			});
+		})
+	</script>
+</head>
+<body>
+	<div id="nav">
+		<a id="nav0">第一个</a>
+		<a id="nav1">第二个</a>
+		<a id="nav2">第三个</a>
+		<a id="nav3">第四个</a>
+		<a id="nav4">第五个</a>
+		<a id="nav5">第六个</a>
+		<a id="nav6">第七个</a>
+		<a id="nav7">第八个</a>
+	</div>
+	<div class="content" id="n0">第一屏</div>
+	<div class="content" id="n1">第二屏</div>
+	<div class="content" id="n2">第三屏</div>
+	<div class="content" id="n3">第四屏</div>
+	<div class="content" id="n4">第五屏</div>
+	<div class="content" id="n5">第六屏</div>
+	<div class="content" id="n6">第七屏</div>
+	<div class="content" id="n7">第八屏</div>
+	<div class="content"></div>
+	<div class="content"></div>
+</body>
+</html>

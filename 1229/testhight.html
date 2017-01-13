@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自适应高度</title>
+	<style type="text/css">
+		body,html{height: 100%}
+		#content{height: 100%;background-color: #f00;width: 100%}
+	</style>
+	<!-- <script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.0/jquery.min.js"></script> -->
+	<script type="text/javascript">
+		window.onload=function(e){
+			var _body=document.getElementsByTagName('body')[0];
+			console.log(_body.clientHeight);
+			_body.style.height=_body.clientHeight+"px";
+		}
+		// $(document).ready(function () {
+		// 　　$('body').height($('body')[0].clientHeight);
+		// });
+	</script>
+</head>
+<body>
+	<div id="content"></div>
+</body>
+</html>

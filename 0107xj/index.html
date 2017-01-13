@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>链式调用</title>
+	<meta charset="UTF-8">
+	<meta name="Author" content="rmk">
+	<script type="text/javascript" >
+		// promise.then();
+		function Asynchronous(fn){
+		    this.list=[fn];//把promise当中所有的then内回调函数添加到数组中;
+		    this.state=0;
+		    var _self=this;
+		    this.n=0;
+		    /**
+		     * then作用：只是把毁掉函数存到数组当中，然后等待被调用。
+		     */
+		     this.then=function(fx){
+		     	this.list.push(fx);
+		     	return this;
+		     }
+		    /**
+		     * 等待被resolve方法按顺序调用，调用后执行数组中的特定的方法
+		     */
+		     this.exec=function(n){
+		     	if(_self.state==1) {
+		     		_self.state = 0;
+		     		this.fm=this.list[n];
+		     		this.fm();
+		     	}
+		     }
+		    /**
+		     * 由回调函数来调用，实例化对象时也自动调用一次;
+		     */
+		    this.resolve=function(){//表示执行该回调函数执行完成
+		        this.state = 1;//
+		        if(this.n<this.list.length) {
+		        	this.exec(this.n++);
+		        }
+		    }
+		    this.resolve();
+		}
+		new Asynchronous(function(){
+			var _self=this;
+			ajaxRequest("post","json0.json",true,null,function(data){
+				alert(data);
+				_self.resolve();
+			});
+		}).then(function(){
+			var _self=this;
+			ajaxRequest("post","json1.json",true,null,function(data){
+				alert(data);
+				_self.resolve();
+			});
+		}).then(function(){
+			var _self=this;
+			ajaxRequest("post","json3.json",true,null,function(data){
+				alert(data);
+				_self.resolve();
+			});
+		}).then(function(){
+			var _self=this;
+			ajaxRequest("post","json2.json",true,null,function(data){
+				alert(data);
+				_self.resolve();
+			});
+		});
+</script>
+</head>
+<body>
+	这是html内容
+</body>
+</html>

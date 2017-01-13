@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Ajax</title>
+	<meta charset="UTF-8">
+	<meta name="Author" content="rmk">
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$.ajax({
+			  url: "shoufengqin.html",
+			  cache: false,
+			  success: function(html){
+			    $("#results").append(html);
+			  }
+			});
+		})
+	</script>
+</head>
+<body>
+	<div id="results">
+		
+	</div>
+</body>
+</html>
