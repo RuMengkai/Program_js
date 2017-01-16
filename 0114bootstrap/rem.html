@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title></title>
+	<meta charset="UTF-8">
+	<meta name="Author" content="rmk">
+
+	<link rel="stylesheet" type="text/css" href="" />
+	<style type="text/css">
+		body{margin:0 auto;}
+		html{font-size: 100px;}
+
+		.box div{width: 1.6rem;height: 1.6rem;background-color: #f00;}
+		.box div{float: left;}
+		.box div:nth-child(2){width: 3.2rem;height: 3.2rem}
+	</style>
+	<script type="text/javascript" src="../0111jQuery/js/jquery.js"></script>
+	<script type="text/javascript">
+		// $(function () {
+		// 	var _w=$("html").width();
+		// 	var _size=_w/640*100;
+		// 	$("html").css("fontSize",_size)
+		// });
+		function initSize() {
+			var _w = document.documentElement.clientWidth||document.body.clientWidth;
+			var _size=_w/640*100;
+			document.documentElement.style.fontSize=_size+"px";
+		}
+		window.onload=function(){
+			initSize();
+		}
+	</script>
+</head>
+<body>
+<div class="box">
+	<div></div>
+	<div></div>
+	<div></div>
+</div>
+<div class="box2">
+	<div></div>
+	<div></div>
+	<div></div>
+</div>
+<div id="aa" style="background-color: #0f0; height:1000px;width: 10px"></div>
+</body>	
+</html>
